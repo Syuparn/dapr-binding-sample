@@ -1,0 +1,14 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: myevent
+spec:
+  type: bindings.rabbitmq
+  version: v1
+  metadata:
+  - name: queueName
+    value: queue1
+  - name: host
+    value: amqp://user:pass@rabbitmq:5672
+  - name: contentType
+    value: "text/plain"

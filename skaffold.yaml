@@ -1,0 +1,26 @@
+apiVersion: skaffold/v4beta1
+kind: Config
+deploy:
+  helm:
+    releases:
+      - name: dapr
+        repo: https://dapr.github.io/helm-charts/
+        remoteChart: dapr
+        version: "1.9.5"
+      - name: rabbitmq
+        repo: https://charts.bitnami.com/bitnami
+        remoteChart: rabbitmq
+        setValues:
+          auth.username: "user"
+          auth.password: "pass"
+build:
+  tagPolicy:
+    envTemplate:
+      template: "{{.IMAGE_NAME}}:latest" # NOTE: fix tag
+  artifacts:
+    - image: myapp
+      context: .
+manifests:
+  rawYaml:
+  - manifests/binding.yaml
+  - manifests/deployment.yaml
