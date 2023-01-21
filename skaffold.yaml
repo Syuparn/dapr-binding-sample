@@ -24,3 +24,4 @@ manifests:
   rawYaml:
   - manifests/binding.yaml
   - manifests/deployment.yaml
+  - manifests/service.yaml
